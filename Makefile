@@ -5,7 +5,7 @@ COMPOSE = docker compose -f ./srcs/docker-compose.yml
 all: up
 
 up:
-	$(COMPOSE) up --build -d
+	$(COMPOSE) up --build 
 
 down:
 	$(COMPOSE) down

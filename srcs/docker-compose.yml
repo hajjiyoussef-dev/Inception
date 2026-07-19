@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   mariadb:
     build:
@@ -15,9 +13,17 @@ services:
       - mariadb_data:/var/lib/mysql
     networks:
       - inception
-   
+  nginx:
+    build:
+      context: ./requirements/nginx
+      dockerfile: Dockerfile
 volumes:
   mariadb_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: "/home/yhajji/data/mariadb"
 secrets:
   db_password:
     file: ../secrets/db_password.txt
