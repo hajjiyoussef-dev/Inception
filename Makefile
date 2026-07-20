@@ -1,10 +1,15 @@
 NAME = inception
 
+
+WP_DATA = /home/yhajji/data/wordpress
+DB_DATA = /home/yhajji/data/mariadb
+
 COMPOSE = docker compose -f ./srcs/docker-compose.yml
 
 all: up
 
 up:
+	@mkdir -p $(WP_DATA) $(DB_DATA) $(PORTAINER_DATA)
 	$(COMPOSE) up --build 
 
 down:

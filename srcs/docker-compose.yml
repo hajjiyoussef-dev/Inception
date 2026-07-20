@@ -17,6 +17,31 @@ services:
     build:
       context: ./requirements/nginx
       dockerfile: Dockerfile
+    container_name: nginx
+    ports:
+      - "443:443"
+    volumes:
+      - wordpress_data:/var/www/html
+    depends_on:
+      - wordpress
+    networks:
+      - inception
+  wordpress:
+    build:
+      context: ./requirements/wordpress
+      dockerfile: Dockerfile
+    container_name: wordpress
+    env_file:
+      - .env
+    secrets:
+      - db_password
+    volumes:
+      - wordpress_data:/var/www/html
+    depends_on:
+      - mariadb
+    networks:
+      - inception
+
 volumes:
   mariadb_data:
     driver: local
@@ -24,6 +49,12 @@ volumes:
       type: none
       o: bind
       device: "/home/yhajji/data/mariadb"
+  wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/yhajji/data/wordpress
 secrets:
   db_password:
     file: ../secrets/db_password.txt
