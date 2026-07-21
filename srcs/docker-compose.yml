@@ -1,9 +1,6 @@
 services:
   mariadb:
-    build:
-      context: ./requirements/mariadb
-      dockerfile: Dockerfile
-    container_name: mariadb
+    build: ./requirements/mariadb
     env_file: 
       - .env
     secrets:
@@ -13,6 +10,7 @@ services:
       - mariadb_data:/var/lib/mysql
     networks:
       - inception
+    restart: on-failure
   nginx:
     build:
       context: ./requirements/nginx
@@ -26,11 +24,9 @@ services:
       - wordpress
     networks:
       - inception
+    restart: on-failure
   wordpress:
-    build:
-      context: ./requirements/wordpress
-      dockerfile: Dockerfile
-    container_name: wordpress
+    build: ./requirements/wordpress
     env_file:
       - .env
     secrets:
@@ -41,7 +37,14 @@ services:
       - mariadb
     networks:
       - inception
-
+    restart: on-failure
+  redis:
+    build: ./requirements/bonus/Redis
+    ports:
+      - "6379:6379"
+    networks:
+      - inception
+    restart: on-failure
 volumes:
   mariadb_data:
     driver: local

@@ -67,6 +67,17 @@ if [ ! -f wp-config.php ]; then
         --role=author \
         --user_pass="$WORDPRESS_USER_PASSWORD" \
         --allow-root
+    
+    echo " redis caching bonus "
+
+    wp plugin install redis-cache --activate --allow-root
+
+    wp config set WP_REDIS_HOST redis --allow-root 
+
+    wp config set WP_REDIS_PORT  6379 --raw --allow-root 
+
+    wp redis enable --allow-root
+
 fi
 
 echo "Setting permissions..."
@@ -74,5 +85,7 @@ echo "Setting permissions..."
 chown -R www-data:www-data "$WORDPRESS_PATH"
 
 mkdir -p /run/php
+
+echo "<< Everything Done ! >>"
 
 exec php-fpm7.4 -F

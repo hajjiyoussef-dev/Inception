@@ -9,7 +9,7 @@ COMPOSE = docker compose -f ./srcs/docker-compose.yml
 all: up
 
 up:
-	@mkdir -p $(WP_DATA) $(DB_DATA) $(PORTAINER_DATA)
+	@mkdir -p $(WP_DATA) $(DB_DATA)
 	$(COMPOSE) up --build 
 
 down:
@@ -33,6 +33,7 @@ clean:
 	$(COMPOSE) down -v
 
 fclean:
+	@sudo rm -rf $(WP_DATA) $(DB_DATA)
 	$(COMPOSE) down --rmi all -v
 	docker system prune -af
 
