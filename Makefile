@@ -3,13 +3,14 @@ NAME = inception
 
 WP_DATA = /home/yhajji/data/wordpress
 DB_DATA = /home/yhajji/data/mariadb
+AD_DATA = /home/yhajji/data/adminer
 
 COMPOSE = docker compose -f ./srcs/docker-compose.yml
 
 all: up
 
 up:
-	@mkdir -p $(WP_DATA) $(DB_DATA)
+	@mkdir -p $(WP_DATA) $(DB_DATA) $(AD_DATA)
 	$(COMPOSE) up --build 
 
 down:
@@ -33,7 +34,7 @@ clean:
 	$(COMPOSE) down -v
 
 fclean:
-	@sudo rm -rf $(WP_DATA) $(DB_DATA)
+	@sudo rm -rf $(WP_DATA) $(DB_DATA) $(AD_DATA)
 	$(COMPOSE) down --rmi all -v
 	docker system prune -af
 

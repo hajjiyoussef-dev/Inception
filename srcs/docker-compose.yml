@@ -20,8 +20,10 @@ services:
       - "443:443"
     volumes:
       - wordpress_data:/var/www/html
+      - adminer_data:/var/www/adminer:ro
     depends_on:
       - wordpress
+      - adminer
     networks:
       - inception
     restart: on-failure
@@ -40,8 +42,15 @@ services:
     restart: on-failure
   redis:
     build: ./requirements/bonus/Redis
-    ports:
-      - "6379:6379"
+    # ports:
+    #   - "6379:6379"
+    networks:
+      - inception
+    restart: on-failure
+  adminer:
+    build: ./requirements/bonus/Adminer
+    volumes:
+      - adminer_data:/var/www/adminer
     networks:
       - inception
     restart: on-failure
@@ -57,7 +66,13 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/yhajji/data/wordpress
+      device: "/home/yhajji/data/wordpress"
+  adminer_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: "/home/yhajji/data/adminer"
 secrets:
   db_password:
     file: ../secrets/db_password.txt

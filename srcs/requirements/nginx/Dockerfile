@@ -9,4 +9,6 @@ COPY tools/setup.sh /setup.sh
 
 RUN chmod +x /setup.sh
 
+RUN rm -f /etc/nginx/sites-enabled/default
+
 ENTRYPOINT ["/setup.sh"]
