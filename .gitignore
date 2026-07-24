@@ -1,5 +1,2 @@
-
-
-.env
-secrets/db_password.txt
-secrets/db_root_password.txt
+secrets/
+srcs/.env
