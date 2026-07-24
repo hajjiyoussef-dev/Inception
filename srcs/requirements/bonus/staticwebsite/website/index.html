@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inception | Static Bonus Site</title>
+  <style>
+    /* CSS RESET & THEME VARIABLES */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    :root {
+      --bg-dark: #0b0d17;
+      --bg-card: #151828;
+      --accent-42: #00babc;
+      --accent-glow: rgba(0, 186, 188, 0.3);
+      --text-primary: #ffffff;
+      --text-secondary: #94a3b8;
+      --border-color: #23273e;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+      width: 100%;
+    }
+
+    /* HEADER */
+    header {
+      border-bottom: 1px solid var(--border-color);
+      padding: 20px 0;
+      background-color: rgba(11, 13, 23, 0.8);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent-42);
+      letter-spacing: 1px;
+    }
+
+    .badge {
+      background-color: rgba(0, 186, 188, 0.1);
+      color: var(--accent-42);
+      border: 1px solid var(--accent-42);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 80px 0 40px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+      background: linear-gradient(135deg, #ffffff 0%, var(--text-secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin: 0 auto 30px;
+    }
+
+    /* GRID & CARDS */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 40px 0;
+    }
+
+    .card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 25px;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-42);
+      box-shadow: 0 10px 20px var(--accent-glow);
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    /* LIVE STATUS SECTION */
+    .status-panel {
+      background: linear-gradient(180deg, var(--bg-card) 0%, rgba(21, 24, 40, 0.5) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 30px;
+      margin: 40px 0;
+    }
+
+    .status-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: #10b981;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      background-color: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #10b981;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.4; }
+      100% { opacity: 1; }
+    }
+
+    .terminal-box {
+      background-color: #000000;
+      border-radius: 6px;
+      padding: 15px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      overflow-x: auto;
+    }
+
+    .terminal-line {
+      margin-bottom: 5px;
+    }
+
+    .terminal-line .cmd {
+      color: var(--accent-42);
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: auto;
+      border-top: 1px solid var(--border-color);
+      padding: 20px 0;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <header>
+    <div class="container nav-wrapper">
+      <div class="logo">INCEPTION // 42/1337</div>
+      <div class="badge">Bonus Container</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <h1>Dockerized Infrastructure</h1>
+      <p>This static site is served from a lightweight dedicated container running alongside WordPress, MariaDB, and NGINX on a isolated network.</p>
+    </section>
+
+    <!-- CONTAINER SERVICES OVERVIEW -->
+    <section class="services-grid">
+      <div class="card">
+        <div class="card-icon">🐳</div>
+        <h3>Isolated Environment</h3>
+        <p>Built from scratch on Debian without pre-made base images, obeying strict 42/1337 project rules.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔒</div>
+        <h3>TLS Encryption</h3>
+        <p>All traffic routes strictly through the NGINX container over HTTPS (Port 443).</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <h3>Fast Performance</h3>
+        <p>Minimalist HTML/CSS setup designed for quick loading and minimal system resource overhead.</p>
+      </div>
+    </section>
+
+    <!-- LIVE SYSTEM STATUS -->
+    <section class="status-panel">
+      <div class="status-header">
+        <h3>Container Info</h3>
+        <div class="status-indicator">
+          <span class="dot"></span>
+          <span>Service Active</span>
+        </div>
+      </div>
+      <div class="terminal-box">
+        <div class="terminal-line"><span class="cmd">system@inception:~$</span> uptime</div>
+        <div class="terminal-line" id="uptime-output">Loading runtime stats...</div>
+        <div class="terminal-line"><span class="cmd">system@inception:~$</span> docker ps --format "table {{.Names}}\t{{.Status}}"</div>
+        <div class="terminal-line" style="color: #4ade80;">nginx &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Up (healthy)</div>
+        <div class="terminal-line" style="color: #4ade80;">wordpress &nbsp;&nbsp;&nbsp;&nbsp; Up (healthy)</div>
+        <div class="terminal-line" style="color: #4ade80;">mariadb &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Up (healthy)</div>
+        <div class="terminal-line" style="color: #4ade80;">static-site &nbsp;&nbsp; Up (healthy)</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>42/1337 Network Inception Project — Built by <span id="login-placeholder">login</span></p>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // Simulate runtime statistics
+    let seconds = 0;
+    const uptimeElement = document.getElementById('uptime-output');
+
+    function updateUptime() {
+      seconds++;
+      const hrs = Math.floor(seconds / 3600);
+      const mins = Math.floor((seconds % 3600) / 60);
+      const secs = seconds % 60;
+      
+      uptimeElement.innerText = `Container Uptime: ${hrs}h ${mins}m ${secs}s | Memory Usage: 12.4MB / 512MB`;
+    }
+
+    // Update timer every second
+    setInterval(updateUptime, 1000);
+    updateUptime();
+
+    // Extract user login from domain (e.g. login.42.fr) if present
+    const hostname = window.location.hostname;
+    if (hostname.includes('.42.fr')) {
+      const login = hostname.split('.')[0];
+      document.getElementById('login-placeholder').innerText = login;
+    } else {
+      document.getElementById('login-placeholder').innerText = '42 Student';
+    }
+  </script>
+</body>
+</html>

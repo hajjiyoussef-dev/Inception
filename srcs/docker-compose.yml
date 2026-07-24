@@ -21,6 +21,7 @@ services:
     volumes:
       - wordpress_data:/var/www/html
       - adminer_data:/var/www/adminer:ro
+      - static_data:/var/www/static:ro
     depends_on:
       - wordpress
       - adminer
@@ -60,13 +61,18 @@ services:
       - .env
     ports:
       - "21:21"
+      - "30000-30009:30000-30009"
     volumes:
-      - wordpress_data:/home/yhajji/ftp
+      - wordpress_data:/var/www/html
     networks:
       - inception
     secrets:
       - ftp_password
     restart: on-failure
+  static:
+    build: ./requirements/bonus/staticwebsite
+    volumes:
+      - static_data:/var/www/static
 volumes:
   mariadb_data:
     driver: local
@@ -86,6 +92,12 @@ volumes:
       type: none
       o: bind
       device: "/home/yhajji/data/adminer"
+  static_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: "/home/yhajji/data/static"
 secrets:
   db_password:
     file: ../secrets/db_password.txt
