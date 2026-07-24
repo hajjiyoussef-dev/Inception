@@ -54,6 +54,19 @@ services:
     networks:
       - inception
     restart: on-failure
+  ftp:
+    build: ./requirements/bonus/FTP
+    env_file:
+      - .env
+    ports:
+      - "21:21"
+    volumes:
+      - wordpress_data:/home/yhajji/ftp
+    networks:
+      - inception
+    secrets:
+      - ftp_password
+    restart: on-failure
 volumes:
   mariadb_data:
     driver: local
@@ -78,6 +91,8 @@ secrets:
     file: ../secrets/db_password.txt
   db_root_password:
     file: ../secrets/db_root_password.txt
+  ftp_password:
+    file: ../secrets/ftp_password.txt
 networks:
   inception:
     driver: bridge
