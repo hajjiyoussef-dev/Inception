@@ -43,8 +43,6 @@ services:
     restart: on-failure
   redis:
     build: ./requirements/bonus/Redis
-    # ports:
-    #   - "6379:6379"
     networks:
       - inception
     restart: on-failure
