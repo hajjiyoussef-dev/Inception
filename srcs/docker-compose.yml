@@ -71,6 +71,19 @@ services:
     build: ./requirements/bonus/staticwebsite
     volumes:
       - static_data:/var/www/static
+    networks:
+      - inception
+    restart: on-failure
+  portainer:
+    build: ./requirements/bonus/Portainer
+    ports:
+      - "9443:9443"
+    volumes:
+      - portainer_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - inception
+    restart: on-failure
 volumes:
   mariadb_data:
     driver: local
@@ -96,6 +109,12 @@ volumes:
       type: none
       o: bind
       device: "/home/yhajji/data/static"
+  portainer_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: "/home/yhajji/data/portainer"
 secrets:
   db_password:
     file: ../secrets/db_password.txt
