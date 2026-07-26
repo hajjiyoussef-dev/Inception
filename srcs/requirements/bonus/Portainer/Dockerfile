@@ -13,6 +13,6 @@ RUN mkdir -p /app && \
 
 WORKDIR /app/portainer
 
-EXPOSE 9000
+EXPOSE 9000 
 
 CMD ["./portainer"]

@@ -82,7 +82,10 @@ fi
 
 echo "Setting permissions..."
 
+
 chown -R www-data:www-data "$WORDPRESS_PATH"
+chgrp -R www-data /var/www/html
+chmod -R g+w /var/www/html
 
 mkdir -p /run/php
 
