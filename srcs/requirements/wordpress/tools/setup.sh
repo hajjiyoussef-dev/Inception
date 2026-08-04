@@ -91,4 +91,4 @@ mkdir -p /run/php
 
 echo "<< Everything Done ! >>"
 
-exec php-fpm7.4 -F
+exec php-fpm8.2 -F
