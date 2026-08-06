@@ -13,7 +13,7 @@ all: up
 
 up:
 	@mkdir -p $(WP_DATA) $(DB_DATA) $(AD_DATA) $(ST_DATA) $(PT_DATA)
-	$(COMPOSE) up --build 
+	$(COMPOSE) up --build -d
 
 down:
 	$(COMPOSE) down
