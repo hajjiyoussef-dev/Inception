@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-secrets/
-srcs/.env
-=======
 
 
 srcs/.env
 secrets/db_password.txt
 secrets/db_root_password.txt
->>>>>>> 80218586a47d1108467722433cd913cd4ea963b4
+secrets/ftp_password.txt

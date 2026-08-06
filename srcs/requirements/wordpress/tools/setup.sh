@@ -2,14 +2,11 @@
 
 set -e 
 
-# echo "MYSQL_USER=$MYSQL_USER"
-# echo "MYSQL_DATABASE=$MYSQL_DATABASE"
 
 WORDPRESS_PATH="/var/www/html"
 
 MYSQL_PASSWORD=$(cat /run/secrets/db_password)
 
-# echo "PASSWORD=[$MYSQL_PASSWORD]"
 
 echo "Waiting for MariaDB..."
 
