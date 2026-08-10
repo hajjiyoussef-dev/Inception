@@ -6,6 +6,7 @@ DB_DATA = /home/yhajji/data/mariadb
 AD_DATA = /home/yhajji/data/adminer
 ST_DATA = /home/yhajji/data/static
 PT_DATA = /home/yhajji/data/portainer
+DATA = /home/yhajji/data
 
 COMPOSE = docker compose -f ./srcs/docker-compose.yml
 
@@ -36,7 +37,7 @@ clean:
 	$(COMPOSE) down -v
 
 fclean:
-	@sudo rm -rf $(WP_DATA) $(DB_DATA) $(AD_DATA) $(ST_DATA) $(PT_DATA)
+	@sudo rm -rf $(WP_DATA) $(DB_DATA) $(AD_DATA) $(ST_DATA) $(PT_DATA) $(DATA)
 	$(COMPOSE) down --rmi all -v
 	docker system prune -af
 
